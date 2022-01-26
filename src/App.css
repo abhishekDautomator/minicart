@@ -1,38 +1,67 @@
-.App {
+.header{
+  padding: 20px;
+  background: #000;
+  color: #fff;
+  display: flex;
+  text-decoration: solid;
+}
+
+.title{
+  text-transform: uppercase;
+  text-align: center;
+  flex:90%
+}
+.cart-total-price{
+  flex:5%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.img-right{
+  text-align: center;
+  height: 30px;
+  width: 30px;
+  flex:5%
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container{
+  margin: 20px 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.column1{
+  flex:5%;
+  margin: 18px 5px 16px 16px;
+  text-align: right;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.column2{
+  flex:70%;
+  margin: 16px 5px 16px 5px;
+}
+
+.column3{
+  flex:10%;
+  margin: 16px;
+}
+
+.column4{
+  flex:5%;
+  margin: 16px;
+}
+
+.grid-item-image{
+  width:40px;
+  height:40px;
+}
+
+.btn-control{
+  size: 60px;
+  margin: 30px 10px;
+  cursor: pointer;
+}
+
+.input-control{
+  width:24px;
+  height:24px;
+  text-align: center;
 }
