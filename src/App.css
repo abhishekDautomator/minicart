@@ -79,23 +79,44 @@
 
 .cart-popup-container{
   position:absolute;
+  right: 19px;
+  top:62px;
+}
+
+.cart-popup-container:after {
+  bottom: 100%;
+  right: 3%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: rgb(200, 236, 235);
+  border-width: 8px;
+  margin-left: -8px;
 }
 
 .column1_popup{
   flex:5%;
-  margin: 28px 16px 16px 16px;
+  margin: 17px 16px 16px 16px;
   text-align: center;
   color:white;
-  font-size: 12px;
+  font-size: 30px;
   cursor: pointer;
 }
 
 .column2_popup{
-  flex:70%;
+  flex:80%;
   margin: 16px 5px 16px 5px;
 }
 
 .column3_popup{
-  flex:10%;
-  margin: 16px;
+  flex:15%;
+  margin: 30px 16px 16px 16px;
+  font-size:10px;
+}
+
+.item-price{
+  font-weight: bold;
 }

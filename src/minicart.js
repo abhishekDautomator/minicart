@@ -94,7 +94,7 @@ export default function Minicart(){
                     </div>
                     <div className="column2_popup">
                         <span className="grid-item">{entry.title}</span><br/>
-                        <span className="grid-item">${entry.totalPrice}</span>
+                        <span className="grid-item item-price">${entry.totalPrice}</span>
                     </div>
                     <div className="column3_popup">
                         <span className="grid-item">Qty {entry.quantity}</span>
@@ -106,13 +106,9 @@ export default function Minicart(){
     }
 
     const perform = () =>{
-        console.log("Perform method is called");
         setPopupList([]);
-        console.log("Popuplist : "+JSON.stringify(popupList));
         openCartPopup();
-        console.log("Popuplist : "+JSON.stringify(popupList));
         setToggle(!toggle);
-        console.log("toggle : "+toggle);
     }
     
     return (
@@ -152,7 +148,7 @@ export default function Minicart(){
                         increaseQuantity(entry.id);
                     }}>+</span>
                 </div>
-                <div className="column4">
+                <div className="column4 item-price">
                     ${entry.totalPrice}
                 </div>
                 </div>
