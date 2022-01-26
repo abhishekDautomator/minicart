@@ -8,6 +8,9 @@ export default function Minicart(){
     const [items, setItems]= useState(storage!==null?storage:[]);
     const [cartTotal, setCartTotal] = useState(0);
     const [cartItemCount, setCartItemCount] = useState(0);
+    const [popupList, setPopupList] = useState([]);
+    const [toggle, setToggle] = useState(false);
+    const [isItemDeleted, setIsItemDeleted] = useState(false);
 
     const entries = (dataList) =>{
         for(const element of dataList){
@@ -20,8 +23,8 @@ export default function Minicart(){
     
     
     useEffect(()=>{
-        console.log(items);
-        if(items.length===0){
+        console.log("useEffect method is called");
+        if(items.length===0 && !isItemDeleted){
             async function fetchData(){
                 const data = await axios.get("http://dnc0cmt2n557n.cloudfront.net/products.json");
                 setItems(entries(data.data.products));
@@ -33,6 +36,9 @@ export default function Minicart(){
         }
         calculateCartTotalPrice();
         calculateCartTotalCount();
+        if(isItemDeleted){
+            perform();
+        }
     },[items])
 
     const increaseQuantity =(id) =>{
@@ -62,6 +68,52 @@ export default function Minicart(){
         console.log("Total cart item count: " + totalItem);
         setCartItemCount(totalItem);
     }
+
+    const deleteItem = (id) =>{
+        let index = -1;
+        items.forEach(item =>{
+            if(item.id === id){
+                index=items.indexOf(item)
+            }
+        })
+        console.log(index);
+        var data = items.filter(item => item.id!==id);
+        console.log("Data : "+JSON.stringify(data));
+        setItems(data);
+        console.log("toggle : "+toggle);
+        setIsItemDeleted(true);
+    }
+
+    const openCartPopup = () =>{
+            setPopupList(
+                <div className="cart-popup-container">
+                {items.map(entry => {
+                return <div key={entry.id} className="cart-popup">
+                    <div className="column1_popup">
+                        <span className="grid-item" onClick={()=>{deleteItem(entry.id)}}>×</span>
+                    </div>
+                    <div className="column2_popup">
+                        <span className="grid-item">{entry.title}</span><br/>
+                        <span className="grid-item">${entry.totalPrice}</span>
+                    </div>
+                    <div className="column3_popup">
+                        <span className="grid-item">Qty {entry.quantity}</span>
+                    </div>
+                </div>
+                })}
+                </div>
+            )
+    }
+
+    const perform = () =>{
+        console.log("Perform method is called");
+        setPopupList([]);
+        console.log("Popuplist : "+JSON.stringify(popupList));
+        openCartPopup();
+        console.log("Popuplist : "+JSON.stringify(popupList));
+        setToggle(!toggle);
+        console.log("toggle : "+toggle);
+    }
     
     return (
         <div>
@@ -72,7 +124,8 @@ export default function Minicart(){
                     <span>{cartItemCount+" items"}</span>
                 </div>
                 <div>
-                    <img className="img-right" src={cartIcon} alt="cartImage"></img>
+                    <img className="img-right" src={cartIcon} alt="cartImage" onClick={perform}></img>
+                    {toggle?popupList:null}
                 </div>
             </div>
             <div>
