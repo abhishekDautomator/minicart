@@ -38,6 +38,7 @@ export default function Minicart() {
     calculateCartTotalCount();
     if (isItemDeleted) {
       perform();
+      setIsItemDeleted(false);
     }
   }, [items]);
 
@@ -181,7 +182,11 @@ export default function Minicart() {
                 >
                   -
                 </span>
-                <input className="input-control" value={entry.quantity}></input>
+                <input 
+                  className="input-control" 
+                  value={entry.quantity}
+                  onChange={() =>console.log(entry)}
+                  ></input>
                 <span
                   className="btn-primary btn-control"
                   onClick={() => {
